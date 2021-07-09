@@ -13,7 +13,19 @@ const server = http.createServer((req, res) => {
     }
 
     if (url === '/message' && method === 'POST') {
-        fs.writeFileSync('message.txt', 'DUMMY');
+        const body = [];
+        // create event listener for whenever a new data chunk comes in
+        req.on('data', (chunk) => {
+            console.log(chunk);
+            body.push(chunk);
+        });
+        req.on('end', () => {
+            // create buffer and add all chunks to it. Then convert to string
+            const parsedBody = Buffer.concat(body).toString();
+            const message = parsedBody.split('=')[1];
+            fs.writeFileSync('message.txt', message);
+        });
+
         //res.writeHead(); // write meta information like status code and header
         res.statusCode = 302;
         res.setHeader('Location', '/'); // redirect user back to initial form
