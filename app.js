@@ -23,11 +23,12 @@ const server = http.createServer((req, res) => {
             // create buffer and add all chunks to it. Then convert to string
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('message.txt', message);
-            //res.writeHead(); // write meta information like status code and header
-            res.statusCode = 302;
-            res.setHeader('Location', '/'); // redirect user back to initial form
-            return res.end();
+            fs.writeFile('message.txt', message, (err) => {
+                //res.writeHead(); // write meta information like status code and header
+                res.statusCode = 302;
+                res.setHeader('Location', '/'); // redirect user back to initial form
+                return res.end();
+            });
         });
     }
 
