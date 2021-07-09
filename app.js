@@ -1,7 +1,9 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
     const url = req.url;
+    const method = req.method;
     if (url === '/') {
         res.write('<html>');
         res.write('<head><titleEnter Message</title></head>');
@@ -9,8 +11,15 @@ const server = http.createServer((req, res) => {
         res.write('</html>');
         return res.end();  // have to return so that we can't call res.write anymore
     }
-    console.log(req.url, req.method, req.headers);
-    // process.exit();
+
+    if (url === '/message' && method === 'POST') {
+        fs.writeFileSync('message.txt', 'DUMMY');
+        //res.writeHead(); // write meta information like status code and header
+        res.statusCode = 302;
+        res.setHeader('Location', '/'); // redirect user back to initial form
+        return res.end();
+    }
+
     res.setHeader('Content-Type', 'text/html');
     res.write('<html>');
     res.write('<head><title>My First Page</title></head>');
