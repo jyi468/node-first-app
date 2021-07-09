@@ -19,17 +19,16 @@ const server = http.createServer((req, res) => {
             console.log(chunk);
             body.push(chunk);
         });
-        req.on('end', () => {
+        return req.on('end', () => {
             // create buffer and add all chunks to it. Then convert to string
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1];
             fs.writeFileSync('message.txt', message);
+            //res.writeHead(); // write meta information like status code and header
+            res.statusCode = 302;
+            res.setHeader('Location', '/'); // redirect user back to initial form
+            return res.end();
         });
-
-        //res.writeHead(); // write meta information like status code and header
-        res.statusCode = 302;
-        res.setHeader('Location', '/'); // redirect user back to initial form
-        return res.end();
     }
 
     res.setHeader('Content-Type', 'text/html');
