@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/jyi468/node-first-app/issues"
   },
-  "homepage": "https://github.com/jyi468/node-first-app#readme"
+  "homepage": "https://github.com/jyi468/node-first-app#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
