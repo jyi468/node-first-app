@@ -1,0 +1,25 @@
+{
+  "name": "first-app",
+  "version": "1.0.0",
+  "description": "Complete Node.js Guide",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jyi468/node-first-app.git"
+  },
+  "keywords": [
+    "Joshua",
+    "Yi"
+  ],
+  "author": "Joshua Yi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jyi468/node-first-app/issues"
+  },
+  "homepage": "https://github.com/jyi468/node-first-app#readme"
+}
