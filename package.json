@@ -25,5 +25,8 @@
   "homepage": "https://github.com/jyi468/node-first-app#readme",
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
