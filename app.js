@@ -7,15 +7,19 @@ const express = require('express');
 
 const app = express(); // initialize a new express object which is a valid request handler
 
-app.use((req, res, next) => {
-    console.log("In the middleware!");
-    // next function must be executed so next middleware is run
+app.use('/', (req, res, next) => {
+    console.log("This always runs");
     next();
-}); // executed for every incoming request
+});
 
-app.use((req, res, next) => {
+// Order of middlewares is important because '/' path match handles every combination
+app.use('/add-product', (req, res, next) => {
+    console.log("In products");
+    res.send('<h1>Product</h1>');
+});
+
+app.use('/', (req, res, next) => {
     console.log("In another middleware!");
-    // send response if no more middleware
     res.send('<h1>Hello from express!</h1>');
 });
 
