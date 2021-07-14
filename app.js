@@ -8,22 +8,15 @@ const bodyParser = require('body-parser');
 
 const app = express(); // initialize a new express object which is a valid request handler
 
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
 // Order of middlewares is important because '/' path match handles every combination
 app.use(bodyParser.urlencoded({extended: false}));  // parses body and calls next afterward. Parses body for things like form data
 
-app.use('/add-product', (req, res, next) => {
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
-});
-
-app.use('/product', (req, res, next) => {
-    console.log(req.body);
-    res.redirect('/');
-});
-
-app.use('/', (req, res, next) => {
-    console.log("In another middleware!");
-    res.send('<h1>Hello from express!</h1>');
-});
+// Routes from admin.js and shop.js
+app.use(adminRoutes);
+app.use(shopRoutes);
 
 // const server = http.createServer(app);
 //
