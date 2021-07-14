@@ -15,7 +15,8 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({extended: false}));  // parses body and calls next afterward. Parses body for things like form data
 
 // Routes from admin.js and shop.js
-app.use('/admin', adminRoutes);
+// app.use('/admin', adminRoutes);
+app.use(adminRoutes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
