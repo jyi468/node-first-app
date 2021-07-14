@@ -18,6 +18,10 @@ app.use(bodyParser.urlencoded({extended: false}));  // parses body and calls nex
 app.use(adminRoutes);
 app.use(shopRoutes);
 
+app.use((req, res, next) => {
+    res.status(404).send('<h1>Page Not found</h1>');
+});
+
 // const server = http.createServer(app);
 //
 // // Nodejs keeps server listening for incoming requests
