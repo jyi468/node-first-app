@@ -2,6 +2,7 @@
 
 // const routes = require('./routes'); // local module, so we need to relative path syntax. don't need '.js'
 // const server = http.createServer(routes);
+const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -20,7 +21,7 @@ app.use(adminRoutes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-    res.status(404).send('<h1>Page Not found</h1>');
+    res.status(404).sendFile(path.join(__dirname, 'views','404.html'));
 });
 
 // const server = http.createServer(app);
