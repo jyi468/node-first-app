@@ -14,10 +14,11 @@ const shopRoutes = require('./routes/shop');
 
 // Order of middlewares is important because '/' path match handles every combination
 app.use(bodyParser.urlencoded({extended: false}));  // parses body and calls next afterward. Parses body for things like form data
+app.use(express.static(path.join(__dirname, 'public'))); // Allow static, read-only access to public folder
 
 // Routes from admin.js and shop.js
-// app.use('/admin', adminRoutes);
-app.use(adminRoutes);
+// app.use(adminRoutes);
+app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
